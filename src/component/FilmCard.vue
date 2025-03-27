@@ -1,14 +1,24 @@
 <script setup>
-defineProps({
+import { useRouter } from "vue-router";
+import { useStore } from "@/stores/store";
+
+const router = useRouter();
+const store = useStore();
+
+const props = defineProps({
   film: {
     type: Object,
     required: true
   }
 });
+
+function navigateToFilm() {
+  store.navigateToFilm(router, props.film.titre);
+}
 </script>
 
 <template>
-  <div class="film-card text-center flex flex-col justify-center bg-white rounded-lg shadow-md overflow-hidden h-full">
+  <div @click="navigateToFilm" class="film-card text-center flex flex-col justify-center bg-white rounded-lg shadow-md overflow-hidden h-full cursor-pointer">
     <img :src="film.imageURL" :alt="film.titre" class="">
     <div class="">
       <h5 class="text-lg font-semibold mb-1 truncate">{{ film.titre }}</h5>
