@@ -59,15 +59,4 @@ const filteredFilms = computed(() => {
   gap: 1rem;
 }
 
-@media (max-width: 768px) {
-  .film-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-@media (max-width: 640px) {
-  .film-grid {
-    grid-template-columns: 1fr;
-  }
-}
 </style>

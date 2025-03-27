@@ -50,7 +50,7 @@ function navigateToFilm() {
 }
 
 img {
-  height: 150px;
-  object-fit: contain;
+  height: auto;
+  background-size: contain;
 }
 </style>

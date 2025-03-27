@@ -12,7 +12,3 @@ import CinemaHeader from "@/component/CinemaHeader.vue";
     </main>
   </div>
 </template>
-
-<style scoped>
-
-</style>
