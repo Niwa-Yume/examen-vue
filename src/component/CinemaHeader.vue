@@ -12,6 +12,12 @@ const prenom = ref('Julien Castro');
         <span class="text-lg">{{ prenom }}</span>
       </div>
     </header>
+    <nav class="bg-blue-500 text-white p-4">
+      <div class="container mx-auto flex items-center justify-around">
+        <a href="/" class="text-lg">Accueil</a>
+        <a href="/AcessCinema" class="text-lg">Accès au cinéma</a>
+      </div>
+    </nav>
   </template>
 
 <style scoped>
