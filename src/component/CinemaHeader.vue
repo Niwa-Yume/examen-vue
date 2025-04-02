@@ -16,6 +16,7 @@ const prenom = ref('Julien Castro');
       <div class="container mx-auto flex items-center justify-around">
         <a href="/" class="text-lg">Accueil</a>
         <a href="/AcessCinema" class="text-lg">Accès au cinéma</a>
+        <a href="/SelectedFilm" class="text-lg">Liste de film choisis</a>
       </div>
     </nav>
   </template>

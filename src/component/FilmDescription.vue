@@ -1,19 +1,4 @@
-<script setup>
-import { useRoute } from 'vue-router';
-import { useStore } from "@/stores/store";
-import {computed} from "vue";
-
-const route = useRoute();
-const store = useStore();
-
-const filmId = route.params.id;
-const film = computed(() =>
-    store.selectedFilm?.titre === decodeURIComponent(filmId)
-        ? store.selectedFilm
-        : store.getFilmByTitre(decodeURIComponent(filmId))
-);
-</script>
-
+<!-- src/component/FilmDescription.vue -->
 <template>
   <div v-if="film" class="max-w-4xl mx-auto p-6 bg-white rounded-lg shadow-lg">
     <div class="flex flex-col md:flex-row gap-8">
@@ -60,6 +45,16 @@ const film = computed(() =>
       </div>
     </div>
 
+    <div class="button-container">
+      <button 
+        @click="handleFilmSelection" 
+        class="select-film-btn"
+        :class="{ 'selected': isFilmSelected }"
+      >
+        {{ isFilmSelected ? 'Retirer de la sélection' : 'Ajouter à ma sélection' }}
+      </button>
+    </div>
+
     <div class="mt-8 text-center">
       <router-link to="/" class="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors">
         Retour à la liste des films
@@ -72,6 +67,59 @@ const film = computed(() =>
   </div>
 </template>
 
-<style scoped>
+<script setup>
+import { useRoute } from 'vue-router';
+import { useStore } from "@/stores/store";
+import { computed } from "vue";
 
+const route = useRoute();
+const store = useStore();
+
+const filmId = route.params.id;
+const film = computed(() => {
+  return store.getFilmByTitre(decodeURIComponent(filmId));
+});
+
+// Vérifie si le film est déjà dans la sélection
+const isFilmSelected = computed(() => {
+  return store.selectedFilms.some(f => f.titre === film.value?.titre);
+});
+
+// Fonction pour gérer la sélection/désélection du film
+const handleFilmSelection = () => {
+  if (!film.value) return;
+
+  if (isFilmSelected.value) {
+    store.removeFromSelectedFilms(film.value.titre);
+  } else {
+    store.addToSelectedFilms(film.value);
+  }
+};
+</script>
+
+<style scoped>
+.select-film-btn {
+  margin-top: 1rem;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+  border: none;
+  font-weight: bold;
+  transition: all 0.3s ease;
+  margin: auto;
+}
+
+.select-film-btn:not(.selected) {
+  background-color: #4CAF50;
+  color: white;
+}
+
+.select-film-btn.selected {
+  background-color: #ff4444;
+  color: white;
+}
+
+.select-film-btn:hover {
+  opacity: 0.9;
+}
 </style>

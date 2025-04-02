@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router';
 import FilmList from "@/component/FilmList.vue";
 import AcessCinema from "@/AcessCinema.vue";
 import FilmDescription from "@/component/FilmDescription.vue";
+import SelectedFilm from "@/component/SelectedFilm.vue";
 
 const routes = [
     {
@@ -16,6 +17,10 @@ const routes = [
         path:'/film/:id',
         name:'Film',
         component: FilmDescription
+    },{
+        path:'/SelectedFilm',
+        name:'Séléction de film',
+        component: SelectedFilm
     }
 ];
 
